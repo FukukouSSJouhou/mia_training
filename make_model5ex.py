@@ -77,7 +77,7 @@ def mainmakemodel5ex(callbackkunniki):
     # checkpoint = ModelCheckpoint(filepath=os.path.join(MODEL_DIR, "model-{epoch:02d}.h5"), save_best_only=True)  # 精度が向上した場合のみ保存する。
     checkpoint = ModelCheckpoint(filepath=os.path.join(MODEL_DIR, "model-{epoch:02d}.h5"),
                                  save_best_only=False)  # 精度の向上・未向上に関わらず保存する。
-    tensorboardkun=tf.keras.callbacks.TensorBoard(log_dir='./logs', histogram_freq=0, write_graph=True)
+    tensorboardkun=tf.keras.callbacks.TensorBoard(log_dir='./logs', histogram_freq=1, write_graph=True)
     # Start training
     # epochs = 100
     epochs = 300
