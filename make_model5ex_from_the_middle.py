@@ -88,7 +88,7 @@ model.load_weights(MODEL_DIR+'/'+'model-{}.h5'.format(from_num))
 #epochs = 100
 epochs = 300
 batch_size = 32
-tensorboardkun = tf.keras.callbacks.TensorBoard(log_dir='./logs', histogram_freq=1, write_graph=True)
+tensorboardkun = tf.keras.callbacks.TensorBoard(log_dir='./logs', histogram_freq=0, write_graph=True)
 
 history = model.fit(X_train, y_train, batch_size=batch_size, initial_epoch = from_num, epochs=epochs, validation_split=0.1, callbacks=[checkpoint,tensorboardkun])
 
