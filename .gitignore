@@ -12,5 +12,7 @@ FACE/facepointmemo/
 FACE/emomemo/
 
 MakeGraph/graphs/
-
+validation/
+train/
+models/
 SENTENCE/split_temp/
