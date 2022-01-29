@@ -88,28 +88,30 @@ model.load_weights(MODEL_DIR+'/'+'model-{}.h5'.format(from_num))
 #epochs = 100
 epochs = 300
 batch_size = 32
-history = model.fit(X_train, y_train, batch_size=batch_size, initial_epoch = from_num, epochs=epochs, validation_split=0.1, callbacks=[checkpoint])
+tensorboardkun = tf.keras.callbacks.TensorBoard(log_dir='./logs', histogram_freq=1, write_graph=True)
+
+history = model.fit(X_train, y_train, batch_size=batch_size, initial_epoch = from_num, epochs=epochs, validation_split=0.1, callbacks=[checkpoint,tensorboardkun])
 
 # グラフ描画
-plt.plot(history.history['accuracy'], "o-")
-plt.plot(history.history['val_accuracy'], "o-")
-plt.title('model accuracy')
-plt.ylabel('accuracy')  # Y軸ラベル
-plt.xlabel('epoch')  # X軸ラベル
-plt.legend(['train', 'test'], loc='upper left')
-plt.show()
+#plt.plot(history.history['accuracy'], "o-")
+#plt.plot(history.history['val_accuracy'], "o-")
+#plt.title('model accuracy')
+#plt.ylabel('accuracy')  # Y軸ラベル
+#plt.xlabel('epoch')  # X軸ラベル
+#plt.legend(['train', 'test'], loc='upper left')
+#plt.show()
 # loss
-plt.plot(history.history['loss'], "o-")
-plt.plot(history.history['val_loss'], "o-")
-plt.title('model loss')
-plt.ylabel('loss')  # Y軸ラベル
-plt.xlabel('epoch')  # X軸ラベル
-plt.legend(['train', 'test'], loc='upper right')
-plt.show()
+#plt.plot(history.history['loss'], "o-")
+#plt.plot(history.history['val_loss'], "o-")
+#plt.title('model loss')
+#plt.ylabel('loss')  # Y軸ラベル
+##plt.xlabel('epoch')  # X軸ラベル
+#plt.legend(['train', 'test'], loc='upper right')
+#plt.show()
 
 
 #Save the tained model
-#model.save( "./models/5face_emotions_~~ep.hdf5" )
+model.save( "./models/5face_emotions_~~ep.hdf5" )
 
 #The final evaluation of the traind model as a hdf5 file
 score = model.evaluate(X_test, y_test)
