@@ -7,7 +7,6 @@ from tensorflow.keras.callbacks import ModelCheckpoint
 #from tensorflow.keras.utils import np_utils
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Conv2D, MaxPooling2D
-from tensorflow.keras.models import load_model
 from tensorflow.keras.layers import Dense, Dropout, Activation, Flatten
 import numpy as np
 from sklearn.model_selection import train_test_split
@@ -47,13 +46,11 @@ def mainmakemodel5ex(isresume):
     # X_train, X_varid, y_train, y_varid = train_test_split(X, Y, test_size=0.20)
 
     print("This is ", X_train.shape[1:])
-    MODEL_DIR = './models/every_epoch_models'
-    if not os.path.exists(MODEL_DIR):
-        os.makedirs(MODEL_DIR)
     # CNN layers definition
     if(isresume):
-        model=load_model(os.path.join(MODEL_DIR, "model-stage"))
+        pass
     else:
+
         model = Sequential()
 
         model.add(Conv2D(32, (3, 3), padding='same', input_shape=X_train.shape[1:], name="1stslotS"))
@@ -79,6 +76,9 @@ def mainmakemodel5ex(isresume):
         # model.summary()
         model.compile(loss='categorical_crossentropy', optimizer='SGD', metrics=['accuracy'])
     #tf.keras.utils.plot_model(model, show_shapes=True, expand_nested=True,to_file='model.png',dpi=96)
+    MODEL_DIR = './models/every_epoch_models'
+    if not os.path.exists(MODEL_DIR):
+        os.makedirs(MODEL_DIR)
     # checkpoint = ModelCheckpoint(filepath=os.path.join(MODEL_DIR, "model-{epoch:02d}.h5"), save_best_only=True)  # 精度が向上した場合のみ保存する。
     checkpoint = ModelCheckpoint(filepath=os.path.join(MODEL_DIR, "model-stage"),
                                  save_best_only=False)  # 精度の向上・未向上に関わらず保存する。
