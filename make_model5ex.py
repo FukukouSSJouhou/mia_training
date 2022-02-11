@@ -12,6 +12,8 @@ from PIL import Image
 import glob
 from tensorflow.keras.preprocessing import image
 import matplotlib.pyplot as plt
+
+
 def mainmakemodel5ex(callbackkunniki):
     folder_path = './train/'
     folder = ["angry", "happy", "neutral", "sad", "surprise"]
@@ -48,7 +50,7 @@ def mainmakemodel5ex(callbackkunniki):
     # CNN layers definition
     model = Sequential()
 
-    model.add(Conv2D(32, (3, 3), padding='same', input_shape=X_train.shape[1:]))
+    model.add(Conv2D(32, (3, 3), padding='same', input_shape=X_train.shape[1:],name="1stslotS"))
     model.add(Activation('relu'))
     model.add(Conv2D(32, (3, 3)))
     model.add(Activation('relu'))
@@ -67,10 +69,12 @@ def mainmakemodel5ex(callbackkunniki):
     model.add(Activation('relu'))
     model.add(Dropout(0.5))
     model.add(Dense(n_class))
-    model.add(Activation('softmax'))
-
+    model.add(Activation('softmax',name='output34'))
+    model.summary()
     model.compile(loss='categorical_crossentropy', optimizer='SGD', metrics=['accuracy'])
 
+    tf.keras.utils.plot_model(model, show_shapes=True, expand_nested=True,to_file='model.png',dpi=96)
+    return  1
     MODEL_DIR = './models/every_epoch_models'
     if not os.path.exists(MODEL_DIR):
         os.makedirs(MODEL_DIR)
