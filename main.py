@@ -76,7 +76,7 @@ def mainmakemodel5ex():
     if not os.path.exists(MODEL_DIR):
         os.makedirs(MODEL_DIR)
     # checkpoint = ModelCheckpoint(filepath=os.path.join(MODEL_DIR, "model-{epoch:02d}.h5"), save_best_only=True)  # 精度が向上した場合のみ保存する。
-    checkpoint = ModelCheckpoint(filepath=os.path.join(MODEL_DIR, "model-{epoch:02d}.h5"),
+    checkpoint = ModelCheckpoint(filepath=os.path.join(MODEL_DIR, "model-stage"),
                                  save_best_only=False)  # 精度の向上・未向上に関わらず保存する。
     tensorboardkun=tf.keras.callbacks.TensorBoard(log_dir='./logs', histogram_freq=0, write_graph=True)
     # Start training
@@ -89,7 +89,7 @@ def mainmakemodel5ex():
     # グラフ描画
 
     # Save the tained model
-    model.save("./models/5face_emotions_~~ep.hdf5")
+    model.save("./models/5face_emotions_~~ep_full")
 
     # The final evaluation of the traind model as a hdf5 file
     score = model.evaluate(X_test, y_test)
