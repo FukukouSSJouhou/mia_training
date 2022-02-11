@@ -67,10 +67,10 @@ def mainmakemodel5ex():
     model.add(Dropout(0.5))
     model.add(Dense(n_class))
     model.add(Activation('softmax',name='output34'))
-    model.summary()
+    #model.summary()
     model.compile(loss='categorical_crossentropy', optimizer='SGD', metrics=['accuracy'])
 
-    tf.keras.utils.plot_model(model, show_shapes=True, expand_nested=True,to_file='model.png',dpi=96)
+    #tf.keras.utils.plot_model(model, show_shapes=True, expand_nested=True,to_file='model.png',dpi=96)
     return  1
     MODEL_DIR = './models/every_epoch_models'
     if not os.path.exists(MODEL_DIR):
